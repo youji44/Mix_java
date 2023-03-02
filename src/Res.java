@@ -102,7 +102,10 @@ public final class Res {
 			new MixData("2", "Close", MIX_TABLE, 0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("3", "5.1.2 ENSURE - OPEN position", MIX_STRING, 0),
-			new MixData("4", "Open", MIX_TABLE, 0)
+			new MixData("4", "Open", MIX_TABLE, 0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("5", "5.1.3 ENSURE pump MIXP101U1 is RUNNING.", MIX_STRING, 0)
+
 	};
 
 	public static final Object[] MIX_UPLOADING_DATA = {
