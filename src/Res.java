@@ -14,7 +14,7 @@ public final class Res {
 	public static final String[] CLOSE_HEADERS = { "COMPONENT ID", "POSITION", "CLOSED" };
 	public static final String[] OPEN_HEADERS = { "COMPONENT ID", "POSITION", "OPEN" };
 	
-	public static final Object[][] CLOSE_DATA = { 
+	public static Object[][] CLOSE_DATA = { 
 			{"MIXXV100UI", "Closed", Boolean.FALSE},
 			{"MIXXV101UI", "Closed", Boolean.FALSE},
 			{"MIXXV102UI", "Closed", Boolean.FALSE},
@@ -23,7 +23,7 @@ public final class Res {
 			{"MIXXV108UI", "Closed", Boolean.FALSE},
 	};
 	
-	public static final Object[][] OPEN_DATA = { 
+	public static Object[][] OPEN_DATA = { 
 			{"MIXXV103UI", "Open", Boolean.FALSE},
 			{"MIXXV104UI", "Open", Boolean.FALSE},
 			{"MIXXV107UI", "Open", Boolean.FALSE},			
@@ -40,64 +40,109 @@ public final class Res {
 
 	
 	public static final Object[] GOOD_DATA = {
-		new MixData("1", "<html>&nbsp 5.2.7.1 INSPECT all truck hoses for leaks and wet spots", MIX_CHECKBOX, 1),
-		new MixData("2", "<html>&nbsp 5.2.7.2 SECURE the tank vehicle with wheel chocks and interlocks", MIX_CHECKBOX, 2),
-		new MixData("3", "<html>&nbsp 5.2.7.3 VERIFY the vehicle's parking brakes are set", MIX_CHECKBOX, 3),
-		new MixData("4", "<html>&nbsp 5.2.7.4 ESTABLISH adequate bonding/grounding prior to connecting to the<br/>"
-				+ "fuel transfer point", MIX_CHECKBOX, 4),
-		new MixData("5", "<html>&nbsp 5.2.7.5 ENSURE cell phones are turned OFF", MIX_CHECKBOX, 5),
-		new MixData("6", "<html>&nbsp 5.2.7.6 ENSURE agitator MIXM100U1 is STOPPED", MIX_CHECKBOX, 6),
-		new MixData("7", "<html>&nbsp 5.2.7.7 ENSURE MIXXV106U1 is OPEN", MIX_CHECKBOX, 7),
-		new MixData("8", "<html>&nbsp 5.2.7.8 ENSURE MIXXV107U1 is CLOSED", MIX_CHECKBOX, 8),
+			new MixData("9", "<html>NOTE:<br>"
+					+ "These steps will prepare and UNLOAD the Mix Tank to a truck", MIX_STRING, 0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+		new MixData("1", "<html> 5.2.7.1 INSPECT all truck hoses for leaks and wet spots", MIX_CHECKBOX, 410),
+		new MixData("2", "<html> 5.2.7.2 SECURE the tank vehicle with wheel chocks and interlocks", MIX_CHECKBOX, 411),
+		new MixData("3", "<html> 5.2.7.3 VERIFY the vehicle's parking brakes are set", MIX_CHECKBOX, 412),
+		new MixData("4", "<html> 5.2.7.4 ESTABLISH adequate bonding/grounding prior to connecting to the<br/>"
+				+ "fuel transfer point", MIX_CHECKBOX, 413),
+		new MixData("5", "<html> 5.2.7.5 ENSURE cell phones are turned OFF", MIX_CHECKBOX, 414),
+		
+		new MixData("0", "empty", MIX_EMPTY, 0),
+		new MixData("0", "<html>CAUTION:<br>"
+				+ "Driver must stay with the vehicle at all times during<br>"
+				+ "loading/unloading activities.", MIX_STRING, 0),
+		new MixData("0", "empty", MIX_EMPTY, 0),
+		new MixData("0", "<html>CAUTION:<br>"
+				+ "Facility Manager or designee should observe the delivery driver<b>"
+				+ "during loading/unloading.", MIX_STRING, 0),
+		new MixData("0", "empty", MIX_EMPTY, 0),
+		new MixData("0", "<html>CAUTION:<br>"
+				+ "Periodically inspect all systems, hoses, and connections.", MIX_STRING, 0),
+		new MixData("0", "empty", MIX_EMPTY, 0),
+		
+		new MixData("6", "<html> 5.2.7.6 ENSURE agitator MIXM100U1 is STOPPED", MIX_CHECKBOX, 415),
+		new MixData("7", "<html> 5.2.7.7 ENSURE MIXXV106U1 is OPEN", MIX_CHECKBOX, 416),
+		new MixData("8", "<html> 5.2.7.8 ENSURE MIXXV107U1 is CLOSED", MIX_CHECKBOX, 417),
 	};
 	
 	public static final Object[] FALSE_DATA = {
-		new MixData("9", "<html>&nbsp 5.2.7.9 ENSURE agitator MIXM100U1 is STOPPED", MIX_CHECKBOX, 1),
-		new MixData("10", "<html>&nbsp 5.2.7.10 ENSURE MIXXV103U1 is CLOSED", MIX_CHECKBOX, 2,1),
-		new MixData("11", "<html>&nbsp 5.2.7.11 ENSURE Mix Tank Drain valve MIXXV105U1 is OPEN", MIX_CHECKBOX, 3),
+			
+			new MixData("0", "<html>NOTE:<br>"
+			+ "These steps will DRAIN the Mix Tank due to a bad batch.", MIX_STRING, 0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			
+		new MixData("9", "<html> 5.2.7.9 ENSURE agitator MIXM100U1 is STOPPED", MIX_CHECKBOX, 418),
+		new MixData("10", "<html> 5.2.7.10 ENSURE MIXXV103U1 is CLOSED", MIX_CHECKBOX, 419),
+		new MixData("11", "<html> 5.2.7.11 ENSURE Mix Tank Drain valve MIXXV105U1 is OPEN", MIX_CHECKBOX, 420),
 	};
 	
 	public static final Object[] TREUCK_TRUE = {
-		new MixData("1", "<html>ENSURE MIXXV106U1 is CLOSED", MIX_CHECKBOX, 1),
-		new MixData("2", "<html>ENSURE MIXXV107U1 is OPEN", MIX_CHECKBOX, 2),
-		new MixData("3", "<html>ENSURE all grounding/bonding wires are DISCONNECTED", MIX_CHECKBOX, 3),
-		new MixData("4", "<html>ENSURE hoses are drained to remove the remaining product before<br>"
-				+ "moving them away from the connection", MIX_CHECKBOX, 4),
-		new MixData("5", "<html>ENSURE caps are placed at the end of the hose and other<br>"
-				+ "connecting devices", MIX_CHECKBOX,5,1),
-		new MixData("6", "<html>REMOVE wheel chocks and interlocks", MIX_CHECKBOX, 6),
+		new MixData("1", "<html>5.3.1.1 ENSURE MIXXV106U1 is CLOSED", MIX_CHECKBOX, 421),
+		new MixData("2", "<html>5.3.1.2 ENSURE MIXXV107U1 is OPEN", MIX_CHECKBOX, 422),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+		new MixData("0", "<html>NOTE:<br>"
+				+ "These steps will secure the truck for transportation.", MIX_STRING, 0),
+				new MixData("0", "empty", MIX_EMPTY, 0),
+				
+		new MixData("3", "<html>5.3.1.3 ENSURE all grounding/bonding wires are DISCONNECTED", MIX_CHECKBOX, 423),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+		new MixData("0", "<html>NOTE:<br>"
+				+ "Drip pans can be used to drain product from hoses.", MIX_STRING, 0),
+				new MixData("0", "empty", MIX_EMPTY, 0),
+				
+		new MixData("4", "<html>5.3.1.4 ENSURE hoses are drained to remove the remaining product before<br>"
+				+ "moving them away from the connection", MIX_CHECKBOX, 424),
+		new MixData("5", "<html>5.3.1.5 ENSURE caps are placed at the end of the hose and other<br>"
+				+ "connecting devices", MIX_CHECKBOX,425),
+		new MixData("6", "<html>5.3.1.6 REMOVE wheel chocks and interlocks", MIX_CHECKBOX, 426),
+		new MixData("6", "<html>5.3.1.7 INSPECT the lowermost drain and all outlets on tank truck prior to departure", MIX_CHECKBOX, 430),
 	};
 	
 	public static final Object[] TREUCK_FALSE = {
-		new MixData("8", "<html>ENSURE MIXXV105U1 is CLOSED", MIX_CHECKBOX, 1),
+		new MixData("8", "<html>5.3.1.8 ENSURE MIXXV105U1 is CLOSED", MIX_CHECKBOX, 427),
 	};
 	
 	public static final Object[] OUTPUT_TRUE = {
-		new MixData("1", "<html>REQUEST Maintenance to investigate Mix Tank Steam Flow.", MIX_CHECKBOX, 1),
+		new MixData("1", "<html>11.1.1 REQUEST Maintenance to investigate Mix Tank Steam Flow.", MIX_CHECKBOX, 428),
 	};
 	
 	public static final Object[] OUTPUT_FALSE = {
-		new MixData("2", "<html>INCREASE Mix Tank Steam Flow MIXFC101U1 OUTPUT by 10% but do not exceed 90%.", MIX_CHECKBOX, 1),
+		new MixData("2", "<html>11.1.2 INCREASE Mix Tank Steam Flow MIXFC101U1 OUTPUT by 10% but do not exceed 90%.", MIX_CHECKBOX, 429),
 	};
 	
 	public static final Object[] MIX_SAMPLE_DATA = {
-			new MixData("1", "<html>5.2.1 SCAN Mix Tank QR Code to verify proper location", MIX_CHECKBOX, 1,0),
+			new MixData("1", "<html>5.2.1 SCAN Mix Tank QR Code to verify proper location", MIX_CHECKBOX, 404,0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("2", "<html>5.2.2 RECORD Mix Tank level (gal)", MIX_TEXTINPUT, 2,0),
+			new MixData("2", "<html>5.2.2 RECORD Mix Tank level (gal)", MIX_TEXTINPUT, 501,0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("3", "<html>5.2.3 REVIEW Mix Tank temperature and concentration", MIX_CHECKBOX, 3,0),
+			new MixData("3", "<html>5.2.3 REVIEW Mix Tank temperature and concentration", MIX_CHECKBOX, 405,0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("4", "<html>5.2.4 RECORD 30-minute trend of the Mix Tank temperature and concentration", MIX_TEXTINPUT, 4,0),
-			new MixData("5", "<html>5.2.5 START monitoring for Mix Tank Low Temperature", MIX_CHECKBOX, 5,0),
-			new MixData("6", "<html>5.2.6 SAMPLE Mix Tank and send to lab for analysis", MIX_CHECKBOX, 6,0),
+			new MixData("4", "<html>5.2.4 RECORD 30-minute trend of the Mix Tank temperature and concentration", MIX_TEXTINPUT, 502,0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("10", "<html>WARNING:<br> If at any time during Unloading the Mix Tank Temperature <br>"
+					+ "MIXTC100UI is <195 DEG F, GO TO the Mix Tank Low <br>"
+					+ "Temperature's section and RETURN to step.", MIX_STRING, 0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("5", "<html>5.2.5 START monitoring for Mix Tank Low Temperature", MIX_CHECKBOX, 406,0),
+			new MixData("6", "<html>5.2.6 SAMPLE Mix Tank and send to lab for analysis", MIX_CHECKBOX, 407,0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("7", "<html>5.2.7 Is the Mix Tank sample GOOD?", GOOD_DATA, FALSE_DATA, MIX_RADIO, 7,1),
+			
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("8", "<html>5.2.8 WAIT until Mix Tank < 5% or until 5 seconds has elapsed", MIX_CHECKBOX, 8,2),
-			new MixData("9", "<html>5.2.9 STOP monitoring for Mix Tank Low Temperature", MIX_CHECKBOX, 9,2),
+			new MixData("8", "<html>5.2.8 WAIT until Mix Tank < 5% or until 5 seconds has elapsed", MIX_CHECKBOX, 408,2),
+			new MixData("9", "<html>5.2.9 STOP monitoring for Mix Tank Low Temperature", MIX_CHECKBOX, 409,2),
+
 	};
 
 	public static final Object[] MIX_TABLE_DATA = {
+			
+			new MixData("0", "<html>NOTE:<br>"
+					+ "The steps below will ensure the Mix Tank is safe and ready to<br>sample.", MIX_STRING, 0),
+					new MixData("0", "empty", MIX_EMPTY, 0),
+					
 			new MixData("1","5.1.1 ENSURE - CLOSED position",MIX_STRING,0),
 			new MixData("2", "Close", MIX_TABLE, 0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
@@ -111,11 +156,21 @@ public final class Res {
 	public static final Object[] MIX_UPLOADING_DATA = {
 			new MixData("1", "<html>5.3.1 IF Mix Tank UNLOADED TO TRUCK?", TREUCK_TRUE, TREUCK_FALSE, MIX_RADIO, 1,0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("2", "<html>5.3.2 RECORD Mix Tank level (gal)", MIX_TEXTINPUT, 2,1),
+			new MixData("2", "<html>5.3.2 RECORD Mix Tank level (gal)", MIX_TEXTINPUT, 503,1),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("3", "<html>5.3.3 CALCULATE amount of gallons transferred", MIX_TEXTINPUT, 3,1),
+			new MixData("3", "<html>5.3.3 CALCULATE amount of gallons transferred", MIX_TEXTINPUT, 504,1),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("4", "<html>5.3.4 RECORD 30 minute trend of the Mix Tank level", MIX_TEXTINPUT, 4,1),
+			new MixData("4", "<html>5.3.4 RECORD 30 minute trend of the Mix Tank level", MIX_TEXTINPUT, 505,1),
+	};
+	
+	public static final Object[] MIX_LOW_DATA = {
+			new MixData("1", "<html>NOTE:<br>"
+					+ "The next steps will attempt to increase the Mix Tank temperature<br>"
+					+ "by adjusting the manual steam flow control.", MIX_STRING, 0),
+			new MixData("2", "<html>If Mix Tank Steam Flow MIXFC101 OUTPUT >= 90%?", OUTPUT_TRUE, OUTPUT_FALSE, MIX_RADIO, 40,0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("1", "<html>GO TO step 5.2.3", MIX_STRING, 0),
+	
 	};
 	
 	public static final MixData[] MIX_INFO = {
@@ -150,12 +205,12 @@ public final class Res {
 				"<br>information on what requirements are to be met, employees can refer to the PPE SOP for more"
 				+ "<br>detailed information.", MIX_STRING,8,6),
 		new MixData("4.3 Special Tools and Equipment, Parts, and Supplies", "None", MIX_STRING,9,6),
-		new MixData("4.4 Approvals & Notifications", "<html> 4.4.1 OBTAIN   Shift Manager approval prior to the initiation of this SOP", MIX_CHECKBOX,10,6),
-		new MixData("4.5 Preliminary Actions", "<html>4.5.1 REVIEW   safety video prior to initiation of this SOP", MIX_CHECKBOX,12,6),
+		new MixData("4.4 Approvals & Notifications", "<html> 4.4.1 OBTAIN   Shift Manager approval prior to the initiation of this SOP", MIX_CHECKBOX,401,6),
+		new MixData("4.5 Preliminary Actions", "<html>4.5.1 REVIEW   safety video prior to initiation of this SOP", MIX_CHECKBOX,402,6),
 
-		new MixData("4.6 Field Preparations", "<html>4.6.1 REQUEST Shift Manager to determine if Mix Tank manual valve lineup is required to be performed", MIX_CHECKBOX,14,6),
+		new MixData("4.6 Field Preparations", "<html>4.6.1 REQUEST Shift Manager to determine if Mix Tank manual valve lineup is required to be performed", MIX_CHECKBOX,403,6),
 	
-		new MixData("5.0 PERFORMANCE", "", MIX_STRING,16),
+		new MixData("5.0 PERFORMANCE", "Mix Tank Unloading Operation", MIX_STRING,16),
 
 		new MixData("5.1 Preparation of Mix Tank for Unloading",
 				"",
@@ -181,7 +236,6 @@ public final class Res {
 	
 		new MixData("8.0 ATTACHMENTS", "None", MIX_STRING,39),				
 		
-		new MixData("11.0 MIX TANK LOW TEMPERATURE", "<html>MIXFC101 OUTPUT >= 90%?", OUTPUT_TRUE, OUTPUT_FALSE, MIX_RADIO, 40,0),
-			
+		new MixData("11.0 MIX TANK LOW TEMPERATURE", "", MIX_LOW_DATA, MIX_DATA, 40,0)
 	};	
 }

@@ -11,6 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,6 +101,23 @@ public class MixTankFrame extends JFrame implements ActionListener {
             		//show Detail Frame
 	            	DetailFrame detailFrame = new DetailFrame();
 	            	detailFrame.buildUI();
+	            	detailFrame.addWindowListener(new WindowAdapter() {
+	            	    @Override
+	            	    public void windowClosing(WindowEvent windowEvent) {
+	            	    	for (int i=0;i<6;i++) {
+	            	    		detailFrame.checkedList.set(29+i,detailFrame.CLOSE_DATA[i][2]==Boolean.TRUE?"true":"false");
+	            	    	}
+	            	    	for (int i=0;i<3;i++) {
+	            	    		detailFrame.checkedList.set(35+i,detailFrame.OPEN_DATA[i][2]==Boolean.TRUE?"true":"false");
+	            	    	}
+	            	    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File("out.txt")))) {
+	                            // write the content to the file
+	                            writer.write(detailFrame.checkedList.toString()+'-'+detailFrame.inputList.toString());
+	                        } catch (IOException e1) {
+	                            e1.printStackTrace();
+	                        }
+	            	    }
+	            	});
 	            }
 	        });
 		}
