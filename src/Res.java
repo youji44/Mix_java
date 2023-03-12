@@ -37,6 +37,7 @@ public final class Res {
 	public static final int MIX_RADIO = 5;
 	public static final int MIX_EMPTY = 6;
 	public static final int MIX_DATA = 7;
+	public static final int MIX_BUTTON = 8;
 
 	
 	public static final Object[] GOOD_DATA = {
@@ -134,6 +135,8 @@ public final class Res {
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("8", "<html>5.2.8 WAIT until Mix Tank < 5% or until 5 seconds has elapsed", MIX_CHECKBOX, 408,2),
 			new MixData("9", "<html>5.2.9 STOP monitoring for Mix Tank Low Temperature", MIX_CHECKBOX, 409,2),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("5.2", "button", MIX_BUTTON, 0),
 
 	};
 
@@ -149,7 +152,9 @@ public final class Res {
 			new MixData("3", "5.1.2 ENSURE - OPEN position", MIX_STRING, 0),
 			new MixData("4", "Open", MIX_TABLE, 0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("5", "5.1.3 ENSURE pump MIXP101U1 is RUNNING.", MIX_STRING, 0)
+			new MixData("5", "5.1.3 ENSURE pump MIXP101U1 is RUNNING.", MIX_STRING, 0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("5.1", "button", MIX_BUTTON, 0),
 
 	};
 
@@ -161,6 +166,8 @@ public final class Res {
 			new MixData("3", "<html>5.3.3 CALCULATE amount of gallons transferred", MIX_TEXTINPUT, 504,1),
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("4", "<html>5.3.4 RECORD 30 minute trend of the Mix Tank level", MIX_TEXTINPUT, 505,1),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("5.3", "button", MIX_BUTTON, 0),
 	};
 	
 	public static final Object[] MIX_LOW_DATA = {
@@ -170,6 +177,8 @@ public final class Res {
 			new MixData("2", "<html>If Mix Tank Steam Flow MIXFC101 OUTPUT >= 90%?", OUTPUT_TRUE, OUTPUT_FALSE, MIX_RADIO, 40,0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("1", "<html>GO TO step 5.2.3", MIX_STRING, 0),
+			new MixData("0", "empty", MIX_EMPTY, 0),
+			new MixData("11.0", "button", MIX_BUTTON, 0),
 	
 	};
 	

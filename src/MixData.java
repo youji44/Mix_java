@@ -1,8 +1,8 @@
 
 public class MixData {
-	public int id;
-	public String key;
-	public String value;
+	public int id; // id
+	public String key; // key
+	public String value; // value
 	
 	public Object[] true_value;
 	public Object[] false_value;
@@ -13,10 +13,10 @@ public class MixData {
 	
 	
 	public MixData( String a, String b, int c, int i) {
-		id = i;
-		key = a;
-		value = b;
-		type = c;
+		id = i; // id
+		key = a; // key
+		value = b; // value
+		type = c; // type
 	}
 	
 	

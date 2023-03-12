@@ -15,21 +15,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JTree;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TreeSelectionEvent;
@@ -52,62 +38,64 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
     public ArrayList<String> checkedList = new ArrayList<String>();
     public ArrayList<String> inputList = new ArrayList<String>();
     public ArrayList<String> radioList = new ArrayList<String>();
-	public static Object[][] CLOSE_DATA = { 
-			{"MIXXV100UI", "Closed", Boolean.FALSE},
-			{"MIXXV101UI", "Closed", Boolean.FALSE},
-			{"MIXXV102UI", "Closed", Boolean.FALSE},
-			{"MIXXV105UI", "Closed", Boolean.FALSE},
-			{"MIXXV106UI", "Closed", Boolean.FALSE},
-			{"MIXXV108UI", "Closed", Boolean.FALSE},
-	};
-	
-	public static Object[][] OPEN_DATA = { 
-			{"MIXXV103UI", "Open", Boolean.FALSE},
-			{"MIXXV104UI", "Open", Boolean.FALSE},
-			{"MIXXV107UI", "Open", Boolean.FALSE},			
-	};	
+    public static Object[][] CLOSE_DATA = {
+            {"MIXXV100UI", "Closed", Boolean.FALSE},
+            {"MIXXV101UI", "Closed", Boolean.FALSE},
+            {"MIXXV102UI", "Closed", Boolean.FALSE},
+            {"MIXXV105UI", "Closed", Boolean.FALSE},
+            {"MIXXV106UI", "Closed", Boolean.FALSE},
+            {"MIXXV108UI", "Closed", Boolean.FALSE},
+    };
+
+    public static Object[][] OPEN_DATA = {
+            {"MIXXV103UI", "Open", Boolean.FALSE},
+            {"MIXXV104UI", "Open", Boolean.FALSE},
+            {"MIXXV107UI", "Open", Boolean.FALSE},
+    };
+
     public void readData() {
-    	Scanner fs = null;
-		try {
-			fs = new Scanner(new File("out.txt"));
-		} catch (FileNotFoundException e1) {
-			System.out.println("out.txt" + "not found");
-		}
-		String checkstr = null;
-		String inputstr = null;
-		while (fs.hasNextLine()) {
-			String line = fs.nextLine();
-			String[] t = line.split("-");
-			checkstr = t[0];
-			inputstr = t[1];
-			checkstr = checkstr.replace("[", "");
-			checkstr = checkstr.replace("]", "");
-			inputstr = inputstr.replace("[", "");
-			inputstr = inputstr.replace("]", "");
-		}
-		for (String str : checkstr.split(", ")) {
-			if(str.equals("true")) {
-				this.checkedList.add("true");
-			}else {
-				this.checkedList.add("false");
-			}
-			}
-		for (String str : inputstr.split(", ")) {
-			if(str=="") {
-		    	this.inputList.add("*");
-			}else {
-				this.inputList.add(str);
-			}
-		}
-    	for (int i=0;i<6;i++) {
-        	this.CLOSE_DATA[i][2] = this.checkedList.get(29+i)=="true"?Boolean.TRUE:Boolean.FALSE;
-    	}
-    	for (int i=0;i<3;i++) {
-        	this.OPEN_DATA[i][2] = this.checkedList.get(35+i)=="true"?Boolean.TRUE:Boolean.FALSE;
-    	}
+        Scanner fs = null;
+        try {
+            fs = new Scanner(new File("out.txt"));
+        } catch (FileNotFoundException e1) {
+            System.out.println("out.txt" + "not found");
+        }
+        String checkstr = null;
+        String inputstr = null;
+        while (fs.hasNextLine()) {
+            String line = fs.nextLine();
+            String[] t = line.split("-");
+            checkstr = t[0];
+            inputstr = t[1];
+            checkstr = checkstr.replace("[", "");
+            checkstr = checkstr.replace("]", "");
+            inputstr = inputstr.replace("[", "");
+            inputstr = inputstr.replace("]", "");
+        }
+        for (String str : checkstr.split(", ")) {
+            if (str.equals("true")) {
+                this.checkedList.add("true");
+            } else {
+                this.checkedList.add("false");
+            }
+        }
+        for (String str : inputstr.split(", ")) {
+            if (str == "") {
+                this.inputList.add("*");
+            } else {
+                this.inputList.add(str);
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            this.CLOSE_DATA[i][2] = this.checkedList.get(29 + i) == "true" ? Boolean.TRUE : Boolean.FALSE;
+        }
+        for (int i = 0; i < 3; i++) {
+            this.OPEN_DATA[i][2] = this.checkedList.get(35 + i) == "true" ? Boolean.TRUE : Boolean.FALSE;
+        }
     }
+
     public void buildUI() {
-    	readData();
+        readData();
         // Create the nodes.
         DefaultMutableTreeNode top = new DefaultMutableTreeNode("Contents");
         createNodes(top);
@@ -216,37 +204,38 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         ArrayList<String> checkedLists = this.checkedList;
-    	
-    	ItemListener itemCheckBoxListener = new ItemListener() {
-             @Override
-             public void itemStateChanged(ItemEvent e) {
-                 if(e.getSource() instanceof JCheckBoxWithID){
-                     JCheckBoxWithID checkBoxWithID = (JCheckBoxWithID) e.getSource();
-                     if(checkBoxWithID.isSelected()){
-                    	 checkedLists.set(checkBoxWithID.getId()-401, "true");
-                     } else {
-                         checkedLists.set(checkBoxWithID.getId()-401, "false");
-                     }
-                 }
-             }
-         };
+
+        ItemListener itemCheckBoxListener = new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() instanceof JCheckBoxWithID) {
+                    JCheckBoxWithID checkBoxWithID = (JCheckBoxWithID) e.getSource();
+                    if (checkBoxWithID.isSelected()) {
+                        checkedLists.set(checkBoxWithID.getId() - 401, "true");
+                    } else {
+                        checkedLists.set(checkBoxWithID.getId() - 401, "false");
+                    }
+                }
+            }
+        };
+
         for (int i = 0; i < data.length; i++) {
             MixData item = (MixData) data[i];
-            switch (item.type){
-            	case Res.MIX_CHECKBOX:
-            		JCheckBoxWithID checkBoxWithID = new JCheckBoxWithID(item.value, item.id);
-    	            checkBoxWithID.addItemListener(itemCheckBoxListener);
-    	            checkBoxWithID.setSelected(this.checkedList.get(item.id-401)=="true"?true:false);
-    	            panel.add(checkBoxWithID);
-    	            break;
-            	case Res.MIX_STRING:
+            switch (item.type) {
+                case Res.MIX_CHECKBOX:
+                    JCheckBoxWithID checkBoxWithID = new JCheckBoxWithID(item.value, item.id);
+                    checkBoxWithID.addItemListener(itemCheckBoxListener);
+                    checkBoxWithID.setSelected(this.checkedList.get(item.id - 401) == "true" ? true : false);
+                    panel.add(checkBoxWithID);
+                    break;
+                case Res.MIX_STRING:
                     panel.add(new JLabel(item.value));
                     break;
                 case Res.MIX_EMPTY:
                     panel.add(new JLabel(" "));
                     break;
                 default:
-                	break;
+                    break;
             }
         }
         return panel;
@@ -268,22 +257,22 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
     }
 
     private void displayValue(MixData selectedMixData) {
-    	ArrayList<String> checkedLists = this.checkedList;
-    	ArrayList<String> inputLists = this.inputList;
-    	
-    	 ItemListener itemCheckBoxListener = new ItemListener() {
-             @Override
-             public void itemStateChanged(ItemEvent e) {
-                 if(e.getSource() instanceof JCheckBoxWithID){
-                     JCheckBoxWithID checkBoxWithID = (JCheckBoxWithID) e.getSource();
-                     if(checkBoxWithID.isSelected()){
-                    	 checkedLists.set(checkBoxWithID.getId()-401, "true");
-                     } else {
-                         checkedLists.set(checkBoxWithID.getId()-401, "false");
-                     }
-                 }
-             }
-         };
+        ArrayList<String> checkedLists = this.checkedList;
+        ArrayList<String> inputLists = this.inputList;
+
+        ItemListener itemCheckBoxListener = new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() instanceof JCheckBoxWithID) {
+                    JCheckBoxWithID checkBoxWithID = (JCheckBoxWithID) e.getSource();
+                    if (checkBoxWithID.isSelected()) {
+                        checkedLists.set(checkBoxWithID.getId() - 401, "true");
+                    } else {
+                        checkedLists.set(checkBoxWithID.getId() - 401, "false");
+                    }
+                }
+            }
+        };
 
         JPanel panel = ((JPanel) htmlView.getViewport().getView());
         panel.removeAll();
@@ -292,6 +281,13 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         switch (selectedMixData.type) {
             case Res.MIX_STRING: {
                 panel.add(new JLabel(selectedMixData.value));
+            }
+            break;
+            case Res.MIX_BUTTON: {
+                JButton btnDone = new JButton("Done");
+                btnDone.putClientProperty("id", selectedMixData.id);
+                btnDone.addActionListener(this);
+                panel.add(btnDone);
             }
             break;
             case Res.MIX_DATA: {
@@ -307,7 +303,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                 for (Object mix_datum : mix_data) {
                     MixData item = (MixData) mix_datum;
 
-                    
+
                     switch (item.type) {
                         case Res.MIX_EMPTY: {
                             JLabel jLabel = new JLabel();
@@ -342,7 +338,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                             sub_panel.setLayout(new CardLayout());
                             JCheckBoxWithID checkBoxWithID = new JCheckBoxWithID(item.value, item.id);
                             checkBoxWithID.addItemListener(itemCheckBoxListener);
-                            checkBoxWithID.setSelected(this.checkedList.get(item.id-401)=="true"?true:false);
+                            checkBoxWithID.setSelected(Objects.equals(this.checkedList.get(item.id - 401), "true"));
                             sub_panel.add(checkBoxWithID);
                             main_panel.add(sub_panel);
 
@@ -354,9 +350,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
 
                             JLabel jLabel = new JLabel(item.value);
                             sub_panel.add(jLabel, BorderLayout.NORTH);
-                            JTextFieldWithID textfieldWithID = new JTextFieldWithID(this.inputList.get(item.id-501),item.id);
+                            JTextFieldWithID textfieldWithID = new JTextFieldWithID(this.inputList.get(item.id - 501), item.id);
                             textfieldWithID.getDocument().addDocumentListener((SimpleDocumentListener) e -> {
-                                inputLists.set(item.id-501, textfieldWithID.getText());
+                                inputLists.set(item.id - 501, textfieldWithID.getText());
                             });
                             sub_panel.add(textfieldWithID, BorderLayout.SOUTH);
                             main_panel.add(sub_panel);
@@ -373,18 +369,39 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                             main_panel.add(cardPane);
                         }
                         break;
-						default:
-							break;
+                        case Res.MIX_BUTTON:{
+                            JPanel sub_panel = new JPanel();
+                            sub_panel.setLayout(new BorderLayout());
+
+                            JButton btnDone = new JButton("Done");
+                            btnDone.putClientProperty("id", item.key);
+                            btnDone.addActionListener(this);
+                            sub_panel.add(btnDone);
+
+                            main_panel.add(sub_panel);
+                        }
+                        break;
+                        default:
+                            break;
                     }
                 }
                 panel.add(main_panel);
             }
             break;
             case Res.MIX_CHECKBOX: {
+                JPanel sub_panel = new JPanel();
+                sub_panel.setLayout(new BoxLayout(sub_panel, BoxLayout.Y_AXIS));
+
                 JCheckBoxWithID checkBoxWithID = new JCheckBoxWithID(selectedMixData.value, selectedMixData.id);
                 checkBoxWithID.addItemListener(itemCheckBoxListener);
-                checkBoxWithID.setSelected(this.checkedList.get(selectedMixData.id-401)=="true"?true:false);
-                panel.add(checkBoxWithID);
+                checkBoxWithID.setSelected(Objects.equals(this.checkedList.get(selectedMixData.id - 401), "true"));
+                sub_panel.add(checkBoxWithID);
+
+                JButton btnDone = new JButton("Done");
+                btnDone.putClientProperty("id", selectedMixData.key);
+                btnDone.addActionListener(this);
+                sub_panel.add(btnDone);
+                panel.add(sub_panel);
             }
             break;
             case Res.MIX_TEXTINPUT: {
@@ -483,6 +500,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             fireTableCellUpdated(rowIndex, columnIndex);
         }
     }
+
     @FunctionalInterface
     public interface SimpleDocumentListener extends DocumentListener {
         void update(DocumentEvent e);
@@ -491,15 +509,18 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         default void insertUpdate(DocumentEvent e) {
             update(e);
         }
+
         @Override
         default void removeUpdate(DocumentEvent e) {
             update(e);
         }
+
         @Override
         default void changedUpdate(DocumentEvent e) {
             update(e);
         }
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object property = ((JComponent) e.getSource()).getClientProperty("id");
@@ -510,6 +531,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         }
     }
 }
+
 class JCheckBoxWithID extends JCheckBox {
     /* I use Integer but the id could be whatever you want, the concept is the same */
     private Integer _id;
@@ -519,14 +541,15 @@ class JCheckBoxWithID extends JCheckBox {
         _id = id;
     }
 
-    public void setId(Integer id){
+    public void setId(Integer id) {
         _id = id;
     }
 
-    public Integer getId(){
+    public Integer getId() {
         return _id;
     }
 }
+
 class JTextFieldWithID extends JTextField {
     /* I use Integer but the id could be whatever you want, the concept is the same */
     private Integer _id;
@@ -536,11 +559,11 @@ class JTextFieldWithID extends JTextField {
         _id = id;
     }
 
-    public void setId(Integer id){
+    public void setId(Integer id) {
         _id = id;
     }
 
-    public Integer getId(){
+    public Integer getId() {
         return _id;
     }
 }
