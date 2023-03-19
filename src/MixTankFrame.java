@@ -1,53 +1,25 @@
-
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
+import java.io.*;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JTree;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeSelectionModel;
 
-
+/**
+ * Mix Tank Procedure entry confirm UI Class
+ */
 public class MixTankFrame extends JFrame implements ActionListener {
 
-    /**
-     *
-     */
+    @Serial
     private static final long serialVersionUID = 2L;
 
     public void buildUI() {
@@ -101,27 +73,29 @@ public class MixTankFrame extends JFrame implements ActionListener {
                     //show Detail Frame
                     DetailFrame detailFrame = new DetailFrame();
                     detailFrame.buildUI();
+
+                    /*
+                     * when close Mix Tank procedure UI, storing inputted data as json data on 'out.txt'
+                     */
                     detailFrame.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent windowEvent) {
-                            for (int i = 0; i < detailFrame.CLOSE_DATA.length; i++) {
-                                detailFrame.checkedList.put((String) detailFrame.CLOSE_DATA[i][0], detailFrame.CLOSE_DATA[i][2] == Boolean.TRUE ? "checked" : "unchecked");
-                            }
-                            for (int i = 0; i < detailFrame.OPEN_DATA.length; i++) {
-                                detailFrame.checkedList.put((String) detailFrame.OPEN_DATA[i][0], detailFrame.OPEN_DATA[i][2] == Boolean.TRUE ? "checked" : "unchecked");
-                            }
-                            try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File("out.txt")))) {
-                                // write the content to the file
-                                writer.write(detailFrame.checkedList.toString() + '-' + detailFrame.inputList.toString() + '-' + detailFrame.doneList.toString());
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
+                        for (int i = 0; i < detailFrame.CLOSE_DATA.length; i++) {
+                            detailFrame.checkedList.put((String) detailFrame.CLOSE_DATA[i][0], detailFrame.CLOSE_DATA[i][2] == Boolean.TRUE ? "checked" : "unchecked");
+                        }
+                        for (int i = 0; i < detailFrame.OPEN_DATA.length; i++) {
+                            detailFrame.checkedList.put((String) detailFrame.OPEN_DATA[i][0], detailFrame.OPEN_DATA[i][2] == Boolean.TRUE ? "checked" : "unchecked");
+                        }
+                        try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File("out.txt")))) {
+                            // write the content to the file
+                            writer.write(detailFrame.checkedList.toString() + '-' + detailFrame.inputList.toString() + '-' + detailFrame.doneList.toString());
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                         }
                     });
                 }
             });
         }
     }
-
-
 }

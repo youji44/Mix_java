@@ -26,14 +26,16 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 
 import com.google.gson.Gson;
-
 import static javax.swing.JOptionPane.showMessageDialog;
 
-
+/**
+ * Mix Data details view frame class:
+ * Tree view and Actions for some buttons
+ */
 public class DetailFrame extends JFrame implements TreeSelectionListener, ActionListener {
 
     /**
-     *
+     * Global variables for working
      */
     @Serial
     private static final long serialVersionUID = 2L;
@@ -71,6 +73,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             {"MIXXV107UI", "Open", Boolean.FALSE},
     };
 
+    /**
+     * Storing Data Processing Function
+     */
     public void readData() {
         Scanner fs = null;
         File out = new File("out.txt");
@@ -121,6 +126,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         }
     }
 
+    /**
+     * Image Icon definition for Tree view symbols
+     */
     private final Icon icon_leaf = createImageIcon("/resources/leaf.png");
     private final Icon icon_done = createImageIcon("/resources/done.png");
     private final Icon icon_req = createImageIcon("/resources/req.png");
@@ -136,6 +144,10 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             return null;
         }
     }
+
+    /**
+     * Main UI building function
+     */
 
     public void buildUI() {
         readData();
@@ -154,11 +166,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         JScrollPane treeView = new JScrollPane(tree);
 
         expandTree(tree);
+
+        // Tree View renderer: Selected color, Set Icons(open, close, leaf)
         cellRenderer = new DefaultTreeCellRenderer() {
-            @Override
-            public Color getBackgroundSelectionColor() {
-                return selected_color;
-            }
 
             @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean focus) {
@@ -241,6 +251,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                 return this;
             }
         };
+
         tree.setCellRenderer(cellRenderer);
 
         htmlView = new JScrollPane(new JPanel());
@@ -269,10 +280,10 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         splitPane.setDividerLocation(250);
         splitPane.setPreferredSize(new Dimension(500, 300));
 
-        JPanel jPanel1 = new JPanel(new BorderLayout());
-        jPanel1.add(splitPane);
+        JPanel data_panel = new JPanel(new BorderLayout());
+        data_panel.add(splitPane);
 
-        jPanel.add(jPanel1);
+        jPanel.add(data_panel);
 //        jPanel.add(buttonPanel);
 
         // Add the split pane to this panel.
@@ -293,6 +304,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         });
     }
 
+    /**
+     * function for generating nodes on Tree view
+     */
     private void createNodes(DefaultMutableTreeNode top) {
 
         Object[] items = Res.MIX_INFO;
@@ -309,7 +323,6 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             nodesMap.put(id, node);
 
             if (parentId == 0) {
-
                 top.add(node);
             } else {
                 nodesMap.get(parentId).add(node);
@@ -318,6 +331,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         }
     }
 
+    /**
+     * All tree nodes has an expanding properties
+     */
     private void expandTree(JTree tree) {
         int row = 0;
         while (tree.getRowCount() > row) {
@@ -325,6 +341,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         }
     }
 
+    /**
+     * Radio option UI and processing function for Mix data
+     */
     private JPanel buildRadioOptionPanel(String question) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         ButtonGroup bg = new ButtonGroup();
@@ -347,6 +366,10 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         return panel;
     }
 
+    /**
+     * Checkbox UI and processing function of Mix Tank Data
+     * Checkbox, String, and space for UI
+     */
     private JPanel buildListCheckboxPanel(Object[] data) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -388,6 +411,10 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         return panel;
     }
 
+    /**
+     * TreeSelectionListener for Tree view class
+     * valueChanged function: when selected on tree nodes
+     */
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         // TODO Auto-generated method stub
@@ -400,9 +427,12 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                 }
             }
         });
-
     }
 
+    /**
+     * Displaying UI and inputted data processing function
+     * for each selected Mix Tank data
+     */
     private void displayValue(MixData selectedMixData) {
         Map<String, String> checkedLists = this.checkedList;
         Map<String, String> inputLists = this.inputList;
@@ -580,18 +610,18 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         panel.repaint();
     }
 
+    /**
+     * Table Model extended class for checkbox cells on Table of Mix Tank Data
+      */
     static class BooleanTableModel extends AbstractTableModel {
 
-        /**
-         *
-         */
+        @Serial
         private static final long serialVersionUID = 1L;
 
         String[] columns;
         Object[][] data;
 
         public BooleanTableModel(boolean isOpen) {
-
             columns = isOpen ? Res.OPEN_HEADERS : Res.CLOSE_HEADERS;
             data = isOpen ? OPEN_DATA : CLOSE_DATA;
         }
@@ -641,26 +671,29 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         }
     }
 
+    /**
+     * Interface class for Input box data processing
+     */
     @FunctionalInterface
     public interface SimpleDocumentListener extends DocumentListener {
         void update(DocumentEvent e);
-
         @Override
         default void insertUpdate(DocumentEvent e) {
             update(e);
         }
-
         @Override
         default void removeUpdate(DocumentEvent e) {
             update(e);
         }
-
         @Override
         default void changedUpdate(DocumentEvent e) {
             update(e);
         }
     }
 
+    /**
+     * Performed function for ActionListener of DetailFrame class
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object property = ((JComponent) e.getSource()).getClientProperty("id");
@@ -690,6 +723,10 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
     }
 }
 
+/**
+ * Extended component class with ID
+ * JCheckBox, JButton, JTextField
+ */
 class JCheckBoxWithID extends JCheckBox {
     /* I use Integer but the id could be whatever you want, the concept is the same */
     private Integer _id;
@@ -698,11 +735,9 @@ class JCheckBoxWithID extends JCheckBox {
         super(text);
         _id = id;
     }
-
     public void setId(Integer id) {
         _id = id;
     }
-
     public Integer getId() {
         return _id;
     }
@@ -716,11 +751,9 @@ class JTextFieldWithID extends JTextField {
         super(text);
         _id = id;
     }
-
     public void setId(Integer id) {
         _id = id;
     }
-
     public Integer getId() {
         return _id;
     }
@@ -729,16 +762,13 @@ class JTextFieldWithID extends JTextField {
 class JButtonWithID extends JButton {
     /* I use Integer but the id could be whatever you want, the concept is the same */
     private Integer _id;
-
     public JButtonWithID(String text, Integer id) {
         super(text);
         _id = id;
     }
-
     public void setId(Integer id) {
         _id = id;
     }
-
     public Integer getId() {
         return _id;
     }
