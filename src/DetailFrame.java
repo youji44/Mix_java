@@ -8,12 +8,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serial;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
 import javax.swing.*;
+import javax.swing.colorchooser.DefaultColorSelectionModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TreeSelectionEvent;
@@ -33,6 +35,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
     /**
      *
      */
+    @Serial
     private static final long serialVersionUID = 2L;
 
     public static final int num_checkBox = 39;
@@ -44,10 +47,9 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
     private JPanel cardPane;
     private DefaultTreeCellRenderer cellRenderer;
 
-    private Color selected_color = Color.yellow;
-    private Color done_color = Color.lightGray;
-    private Color sel_done_color = Color.gray;
-
+    private final Color selected_color = Color.yellow;
+    private final Color done_color = Color.lightGray;
+    private final Color sel_done_color = Color.gray;
 
     Map<String, String> checkedList = new HashMap<String, String>();
     Map<String, String> inputList = new HashMap<String, String>();
@@ -152,7 +154,6 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         JScrollPane treeView = new JScrollPane(tree);
 
         expandTree(tree);
-
         cellRenderer = new DefaultTreeCellRenderer() {
             @Override
             public Color getBackgroundSelectionColor() {
@@ -164,19 +165,19 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                 JComponent c = (JComponent) super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, focus);
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
 
+                if (selected) {
+                    c.setBackground(selected_color);
+                    c.setOpaque(true);
+
+                } else {
+                    c.setBackground(null);
+                    c.setOpaque(true);
+                }
+
+                setLeafIcon(icon_leaf);
+
                 String s = node.getUserObject().toString();
                 if (node.getUserObject() instanceof MixData) {
-
-                    if (selected) {
-                        c.setBackground(selected_color);
-                        c.setOpaque(true);
-                    } else {
-                        c.setBackground(null);
-                        c.setOpaque(true);
-                    }
-
-                    setLeafIcon(icon_leaf);
-
                     if (s.equals("4.4 Approvals & Notifications"))
                         if (doneLists.get("601").equalsIgnoreCase("done")) {
                             if (selected) c.setBackground(sel_done_color);
@@ -240,7 +241,6 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                 return this;
             }
         };
-
         tree.setCellRenderer(cellRenderer);
 
         htmlView = new JScrollPane(new JPanel());
@@ -676,6 +676,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                 int id = ((JButtonWithID) ((JComponent) e.getSource())).getId();
                 if (this.doneList.get(String.valueOf(id - 1)) == null || this.doneList.get(String.valueOf(id - 1)).equals("Done")) {
                     this.doneList.put(String.valueOf(((JButtonWithID) ((JComponent) e.getSource())).getId()), "Done");
+                    tree.repaint();
                 } else {
                     showMessageDialog(null, "Previous sections should be completed.");
                 }
