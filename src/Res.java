@@ -136,7 +136,7 @@ public final class Res {
 			new MixData("8", "<html>5.2.8 WAIT until Mix Tank < 5% or until 5 seconds has elapsed", MIX_CHECKBOX, 408,2),
 			new MixData("9", "<html>5.2.9 STOP monitoring for Mix Tank Low Temperature", MIX_CHECKBOX, 409,2),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("5.2", "button", MIX_BUTTON, 0),
+			new MixData("5.2", "button", MIX_BUTTON, 605),
 
 	};
 
@@ -154,7 +154,7 @@ public final class Res {
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("5", "5.1.3 ENSURE pump MIXP101U1 is RUNNING.", MIX_STRING, 0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("5.1", "button", MIX_BUTTON, 0),
+			new MixData("5.1", "button", MIX_BUTTON, 604),
 
 	};
 
@@ -167,7 +167,7 @@ public final class Res {
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("4", "<html>5.3.4 RECORD 30 minute trend of the Mix Tank level", MIX_TEXTINPUT, 505,1),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("5.3", "button", MIX_BUTTON, 0),
+			new MixData("5.3", "button", MIX_BUTTON, 606),
 	};
 	
 	public static final Object[] MIX_LOW_DATA = {
@@ -178,7 +178,7 @@ public final class Res {
 			new MixData("0", "empty", MIX_EMPTY, 0),
 			new MixData("1", "<html>GO TO step 5.2.3", MIX_STRING, 0),
 			new MixData("0", "empty", MIX_EMPTY, 0),
-			new MixData("11.0", "button", MIX_BUTTON, 0),
+			new MixData("11.0", "button", MIX_BUTTON, 607),
 	
 	};
 	

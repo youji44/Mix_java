@@ -7,8 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.*;
+
 
 
 public class MainFrame extends JFrame implements ActionListener  {
@@ -31,9 +34,15 @@ public class MainFrame extends JFrame implements ActionListener  {
 		// TODO Auto-generated constructor stub
 		m_nInstance = this;
 	}
-
+	class Person {
+		public String name;
+		public Person(String name) {
+		this.name = name;
+		}
+		}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+				
 		EventQueue.invokeLater(new Runnable() {
 			
 			@Override
