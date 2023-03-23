@@ -57,6 +57,8 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
     Map<String, String> inputList = new HashMap<String, String>();
     Map<String, String> doneList = new HashMap<String, String>();
 
+    private MixData selected_data;
+
 
     public static Object[][] CLOSE_DATA = {
             {"MIXXV100UI", "Closed", Boolean.FALSE},
@@ -253,6 +255,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         };
 
         tree.setCellRenderer(cellRenderer);
+        tree.setSelectionRow(1);
 
         htmlView = new JScrollPane(new JPanel());
         displayValue((MixData) Res.MIX_INFO[0]);
@@ -284,7 +287,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         data_panel.add(splitPane);
 
         jPanel.add(data_panel);
-//        jPanel.add(buttonPanel);
+        jPanel.add(buttonPanel);
 
         // Add the split pane to this panel.
         setContentPane(jPanel);
@@ -666,7 +669,6 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                 data[rowIndex][columnIndex] = data[rowIndex][columnIndex] == Boolean.FALSE ? Boolean.TRUE
                         : Boolean.FALSE;
             }
-
             fireTableCellUpdated(rowIndex, columnIndex);
         }
     }
@@ -696,22 +698,37 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        int[] current = tree.getSelectionRows();
+        int cur_index = current!=null?current[0]:0;
+        int total = tree.getRowCount() - 1;
+        int[] node_ids = {0,1,2,3,4,5,6,7,8,9,601,602,603,13,604,605,606,17,18,19,20,21,607};
+
         Object property = ((JComponent) e.getSource()).getClientProperty("id");
+
         if ((JComponent) e.getSource() instanceof JButtonWithID) {
+            int id = ((JButtonWithID) ((JComponent) e.getSource())).getId();
 
             if (((JButtonWithID) ((JComponent) e.getSource())).getId() == 100) {
+
                 // next button
-                System.out.println("Next");
+                int next = cur_index == total ? total : cur_index + 1;
+                if (node_ids[cur_index] < 600 || this.doneList.get(Integer.toString(node_ids[cur_index])).equals("Done")){
+                    tree.setSelectionRow(next);
+                }else{
+                    tree.setSelectionRow(cur_index);
+                    showMessageDialog(null, "Current section should be completed!");
+                }
             } else if (((JButtonWithID) ((JComponent) e.getSource())).getId() == 101) {
                 // prev button
-                System.out.println("Prev");
+                int prev = cur_index==0?0:cur_index-1;
+                tree.setSelectionRow(prev);
+
             } else {
-                int id = ((JButtonWithID) ((JComponent) e.getSource())).getId();
                 if (this.doneList.get(String.valueOf(id - 1)) == null || this.doneList.get(String.valueOf(id - 1)).equals("Done")) {
                     this.doneList.put(String.valueOf(((JButtonWithID) ((JComponent) e.getSource())).getId()), "Done");
                     tree.repaint();
                 } else {
-                    showMessageDialog(null, "Previous sections should be completed.");
+                    showMessageDialog(null, "Previous sections should be completed!");
                 }
             }
         }
@@ -721,6 +738,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             cl.show(cardPane, radioType == 0 ? "Yes" : "No");
         }
     }
+
 }
 
 /**
