@@ -116,9 +116,13 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             for (int i = 0; i < this.num_inputField; i++) {
                 this.inputList.put(String.valueOf(501 + i), "0");
             }
-            for (int i = 0; i < this.num_doneSection; i++) {
-                this.doneList.put(String.valueOf(601 + i), "x");
+
+            int[] node_ids = {620,621,622,623,624,625,626,627,628,629,601,602,603,630,604,605,606,634,635,636,637,638,607};
+
+            for (int i = 1; i < node_ids.length; i++) {
+                this.doneList.put(String.valueOf(node_ids[i]), "x");
             }
+
             for (int i = 0; i < this.CLOSE_DATA.length; i++) {
                 this.CLOSE_DATA[i][2] = Boolean.FALSE;
             }
@@ -133,7 +137,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
      */
     private final Icon icon_leaf = createImageIcon("/resources/leaf.png");
     private final Icon icon_done = createImageIcon("/resources/done.png");
-    private final Icon icon_req = createImageIcon("/resources/req.png");
+    private final Icon icon_req = createImageIcon("/resources/leaf.png");
 
     // Returns an ImageIcon, or null if the path was invalid.
     private static ImageIcon createImageIcon(String path) {
@@ -190,6 +194,80 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
 
                 String s = node.getUserObject().toString();
                 if (node.getUserObject() instanceof MixData) {
+
+                    MixData mixData = (MixData) node.getUserObject();
+                    if (s.equals("1.0 PURPOSE"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("2.0 SCOPE"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("2.1 Responsibilities"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("2.2 Background"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("3.0 PRECAUTIONS & LIMITATIONS"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("4.0 PREREQUISITE ACTIONS"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("4.1 Radiological Concerns"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("4.2 Employee Safety"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("4.3 Special Tools and Equipment, Parts, and Supplies"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
                     if (s.equals("4.4 Approvals & Notifications"))
                         if (doneLists.get("601").equalsIgnoreCase("done")) {
                             if (selected) c.setBackground(sel_done_color);
@@ -217,6 +295,14 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                         } else
                             setLeafIcon(icon_req);
 
+                    if (s.equals("5.0 PERFORMANCE"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
                     if (s.equals("5.1 Preparation of Mix Tank for Unloading"))
                         if (doneLists.get("604").equalsIgnoreCase("done")) {
                             if (selected) c.setBackground(sel_done_color);
@@ -240,6 +326,46 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
 
                             setLeafIcon(icon_done);
                         } else setLeafIcon(icon_req);
+
+                    if (s.equals("6.0 REFERENCES"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("6.1 Performance References"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("6.2 Source Requirements"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("7.0 RECORDS"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
+
+                    if (s.equals("8.0 ATTACHMENTS"))
+                        if (doneLists.get(String.valueOf(mixData.id)).equalsIgnoreCase("done")) {
+                            if (selected) c.setBackground(sel_done_color);
+                            else c.setBackground(done_color);
+                            setLeafIcon(icon_done);
+                        } else
+                            setLeafIcon(icon_req);
 
                     if (s.equals("11.0 MIX TANK LOW TEMPERATURE"))
                         if (doneLists.get("607").equalsIgnoreCase("done")) {
@@ -269,8 +395,8 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         jNextBtn.addActionListener(this);
         JButtonWithID jPrevBtn = new JButtonWithID("< Prev", 101);
         jPrevBtn.addActionListener(this);
-        buttonPanel.add(jPrevBtn);
-        buttonPanel.add(jNextBtn);
+//        buttonPanel.add(jPrevBtn);
+//        buttonPanel.add(jNextBtn);
 
         // Add the scroll panes to a split pane.
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -287,7 +413,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         data_panel.add(splitPane);
 
         jPanel.add(data_panel);
-        jPanel.add(buttonPanel);
+//        jPanel.add(buttonPanel);
 
         // Add the split pane to this panel.
         setContentPane(jPanel);
@@ -460,7 +586,22 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
 
         switch (selectedMixData.type) {
             case Res.MIX_STRING: {
-                panel.add(new JLabel(selectedMixData.value));
+
+
+                JPanel sub_panel = new JPanel();
+                sub_panel.setLayout(new BoxLayout(sub_panel,BoxLayout.Y_AXIS));
+                sub_panel.add(new JLabel(selectedMixData.value));
+                sub_panel.add(new JLabel(" "));
+
+                JButtonWithID btnDone = new JButtonWithID("Done", selectedMixData.id);
+                btnDone.putClientProperty("id", selectedMixData.key);
+                btnDone.addActionListener(this);
+
+
+                sub_panel.add(btnDone);
+
+                panel.add(sub_panel);
+
             }
             break;
             case Res.MIX_DATA: {
@@ -701,35 +842,21 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
         int[] current = tree.getSelectionRows();
         int cur_index = current!=null?current[0]:0;
         int total = tree.getRowCount() - 1;
-        int[] node_ids = {0,1,2,3,4,5,6,7,8,9,601,602,603,13,604,605,606,17,18,19,20,21,607};
 
         Object property = ((JComponent) e.getSource()).getClientProperty("id");
 
         if ((JComponent) e.getSource() instanceof JButtonWithID) {
             int id = ((JButtonWithID) ((JComponent) e.getSource())).getId();
+            if (this.doneList.get(String.valueOf(id - 1)) == null || this.doneList.get(String.valueOf(id - 1)).equals("Done")) {
 
-            if (((JButtonWithID) ((JComponent) e.getSource())).getId() == 100) {
-
-                // next button
+                this.doneList.put(String.valueOf(id), "Done");
                 int next = cur_index == total ? total : cur_index + 1;
-                if (node_ids[cur_index] < 600 || this.doneList.get(Integer.toString(node_ids[cur_index])).equals("Done")){
-                    tree.setSelectionRow(next);
-                }else{
-                    tree.setSelectionRow(cur_index);
-                    showMessageDialog(null, "Current section should be completed!");
-                }
-            } else if (((JButtonWithID) ((JComponent) e.getSource())).getId() == 101) {
-                // prev button
-                int prev = cur_index==0?0:cur_index-1;
-                tree.setSelectionRow(prev);
+                //if(id == 625 || id == 606) next++;
+                tree.setSelectionRow(next);
+                tree.repaint();
 
             } else {
-                if (this.doneList.get(String.valueOf(id - 1)) == null || this.doneList.get(String.valueOf(id - 1)).equals("Done")) {
-                    this.doneList.put(String.valueOf(((JButtonWithID) ((JComponent) e.getSource())).getId()), "Done");
-                    tree.repaint();
-                } else {
-                    showMessageDialog(null, "Previous sections should be completed!");
-                }
+                showMessageDialog(null, "Previous sections should be completed!");
             }
         }
         if (property instanceof Integer) {
@@ -738,7 +865,6 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             cl.show(cardPane, radioType == 0 ? "Yes" : "No");
         }
     }
-
 }
 
 /**
