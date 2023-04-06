@@ -19,7 +19,6 @@ import javax.swing.SwingUtilities;
  */
 public class MixTankFrame extends JFrame implements ActionListener {
 
-    @Serial
     private static final long serialVersionUID = 2L;
 
     public void buildUI() {
