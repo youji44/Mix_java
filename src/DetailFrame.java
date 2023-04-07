@@ -625,7 +625,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
 
             for (int i = 0; i < OPEN_DATA.length; i ++){
                 String key = (String) OPEN_DATA[i][0];
-                if (checkedList.get(key) != null && checkedList.get(key).equalsIgnoreCase("unchecked")){
+                if (checkedList.get(key) == null || checkedList.get(key).equalsIgnoreCase("unchecked")){
                     isChecked_open = false;
                     break;
                 }
@@ -633,11 +633,13 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
 
             for (int i = 0; i < CLOSE_DATA.length; i ++){
                 String key = (String) CLOSE_DATA[i][0];
-                if (checkedList.get(key) != null && checkedList.get(key).equalsIgnoreCase("unchecked")){
+
+                if (checkedList.get(key) == null || checkedList.get(key).equalsIgnoreCase("unchecked")){
                     isChecked_close = false;
                     break;
                 }
             }
+
             return isChecked_open && isChecked_close;
         }
 
@@ -814,6 +816,13 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
                     }
                 }
                 panel.add(main_panel);
+
+                if (isDone(current_doneBtn.getId())){
+                    editList.put(String.valueOf(current_doneBtn.getId()),"yes");
+                    current_doneBtn.setEnabled(true);
+                }else{
+                    current_doneBtn.setEnabled(false);
+                }
             }
             break;
             case Res.MIX_CHECKBOX: {
@@ -866,15 +875,6 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             break;
             default: // Note, Warning
                 break;
-        }
-
-        if(selectedMixData.type == Res.MIX_DATA){
-            if (isDone(current_doneBtn.getId())){
-                editList.put(String.valueOf(current_doneBtn.getId()),"yes");
-                current_doneBtn.setEnabled(true);
-            }else{
-                current_doneBtn.setEnabled(false);
-            }
         }
 
         panel.revalidate();
@@ -945,7 +945,7 @@ public class DetailFrame extends JFrame implements TreeSelectionListener, Action
             }
             fireTableCellUpdated(rowIndex, columnIndex);
 
-            if (isDone(current_doneBtn.getId())){
+            if (isDone(604)){
                 editList.put(String.valueOf(current_doneBtn.getId()),"yes");
                 current_doneBtn.setEnabled(true);
             }else{
